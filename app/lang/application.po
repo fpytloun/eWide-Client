@@ -1,0 +1,117 @@
+# Gettext keys exported by GettextExtractor
+# Created: 2010-10-14T17:26:58+02:00
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Filip Pytloun <filip@pytloun.cz>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# _templates.Movie.default.phtml-65dea8c8d1877f631a6a62775fbd2b4e.php:29
+# _templates.Movie.default.phtml-7583ce2df09793cd22ed0b804229db5c.php:29
+# _templates.Movie.default.phtml-4c8cb1fba5720d449931924c0388b50e.php:29
+# default.phtml:17
+msgid "Acting"
+msgstr "Acting"
+
+# _templates.Movie.default.phtml-65dea8c8d1877f631a6a62775fbd2b4e.php:15
+# _templates.Movie.default.phtml-7583ce2df09793cd22ed0b804229db5c.php:15
+# _templates.Movie.default.phtml-4c8cb1fba5720d449931924c0388b50e.php:15
+# default.phtml:3
+msgid "Back to movies list"
+msgstr "Back to movies list"
+
+# _templates.Movie.default.phtml-65dea8c8d1877f631a6a62775fbd2b4e.php:27
+# _templates.Movie.default.phtml-7583ce2df09793cd22ed0b804229db5c.php:27
+# _templates.Movie.default.phtml-4c8cb1fba5720d449931924c0388b50e.php:27
+# default.phtml:15
+msgid "Direction"
+msgstr "Direction"
+
+# _templates.Login.default.phtml-6e09aa740c1459a3d8d833534ef8b4e7.php:19
+# _templates.Login.default.phtml-b057db5bf2dd3b20235c3849aac54341.php:19
+# _templates.Login.default.phtml-029c83c56482980a321c845380d9ad88.php:19
+# default.phtml:9
+msgid "Log in"
+msgstr "Log in"
+
+# _templates.Movie.default.phtml-65dea8c8d1877f631a6a62775fbd2b4e.php:16
+# _templates.Movie.default.phtml-7583ce2df09793cd22ed0b804229db5c.php:16
+# _templates.Homepage.default.phtml-2e691f92ba2ab71b099120f0b368b8fb.php:15
+# _templates.Movie.default.phtml-4c8cb1fba5720d449931924c0388b50e.php:16
+# _templates.Homepage.default.phtml-8f45b96212f9ca09f8001f7e997220c6.php:15
+# _templates.Homepage.default.phtml-0e9598457e286db631f491017dbccecb.php:15
+# default.phtml:3
+# default.phtml:4
+msgid "Logged in as user"
+msgstr "Logged in as user"
+
+# LoginPresenter.php:43
+msgid "Login"
+msgstr "Login"
+
+# _templates.Movie.default.phtml-65dea8c8d1877f631a6a62775fbd2b4e.php:17
+# _templates.Movie.default.phtml-7583ce2df09793cd22ed0b804229db5c.php:17
+# _templates.Homepage.default.phtml-2e691f92ba2ab71b099120f0b368b8fb.php:16
+# _templates.Movie.default.phtml-4c8cb1fba5720d449931924c0388b50e.php:17
+# _templates.Homepage.default.phtml-8f45b96212f9ca09f8001f7e997220c6.php:16
+# _templates.Homepage.default.phtml-0e9598457e286db631f491017dbccecb.php:16
+# default.phtml:4
+# default.phtml:5
+msgid "Logout"
+msgstr "Logout"
+
+# _templates.Homepage.default.phtml-2e691f92ba2ab71b099120f0b368b8fb.php:20
+# _templates.Homepage.default.phtml-8f45b96212f9ca09f8001f7e997220c6.php:20
+# _templates.Homepage.default.phtml-0e9598457e286db631f491017dbccecb.php:20
+# default.phtml:8
+msgid "Movies list"
+msgstr "Movies list"
+
+# LoginPresenter.php:38
+msgid "Password:"
+msgstr "Password:"
+
+# LoginPresenter.php:39
+msgid "Please provide a password."
+msgstr "Please provide a password."
+
+# LoginPresenter.php:36
+msgid "Please provide a username."
+msgstr "Please provide a username."
+
+# LoginPresenter.php:41
+msgid "Remember me on this computer"
+msgstr "Remember me on this computer"
+
+# _templates.Movie.default.phtml-4c8cb1fba5720d449931924c0388b50e.php:57
+msgid "Requested movie was not found !"
+msgstr "Requested movie was not found !"
+
+# LoginPresenter.php:35
+msgid "Username:"
+msgstr "Username:"
+
+msgid "name"
+msgstr "Name"
+
+msgid "name_orig"
+msgstr "Original name"
+
+msgid "direction"
+msgstr "Direction"
+
+msgid "country"
+msgstr "Country"
+
+msgid "year"
+msgstr "Year"
+
+msgid "genre"
+msgstr "Genre"
+

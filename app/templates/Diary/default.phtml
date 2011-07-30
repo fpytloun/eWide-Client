@@ -1,0 +1,76 @@
+{block title}
+	<h2>Diář</h2>
+{/block}
+
+{block submenu}
+
+{/block}
+
+{block content}
+	<table id="diary">
+		<tr>
+			<th colspan="8"><a href="{$previousMonth}">⇦</a> {$monthName} <a href="{$nextMonth}">⇨</a></th>
+		</tr>
+		<tr class="legend">
+			<td class="legend">
+				Týden
+			</td>
+			<td class="legend">
+				Pondělí
+			</td>
+			<td class="legend">
+				Úterý
+			</td>
+			<td class="legend">
+				Středa
+			</td>
+			<td class="legend">
+				Čtvrtek
+			</td>
+			<td class="legend">
+				Pátek
+			</td>
+			<td class="legend">
+				Sobota
+			</td>
+			<td class="legend">
+				Neděle
+			</td>
+		{foreach $calendar as $key => $day}
+			{if !empty($day['new_row'])}
+			</tr>
+			<tr class="week">
+				<td class="week_counter">
+					{$day['new_row']}
+				</td>
+			{/if}
+			{if $day['actual'] == false}
+				<td class="day_old" width="14%" height="20%">
+					{if $day['weekend'] == true}
+						<p class="day_date_holiday">{$day['day']}</p>
+					{else}
+						<p class="day_date">{$day['day']}</p>
+					{/if}
+					{if !empty($day['visits'])}
+						<p class="day_visits">Schůzek: <a href="{plink Overview:visits}{$day['year'].'-'.$day['month'].'-'.$day['day']}/{$day['year'].'-'.$day['month'].'-'.$day['day']}" class="bold">{$day['visits']}</a></p>
+					{/if}
+				</td>
+			{else}
+			{if date('Y-n-j') == $day['year'].'-'.$day['month'].'-'.$day['day']}
+				<td class="day_today" width="14%" height="100px">
+			{else}
+				<td class="day_actual" width="14%" height="100px">
+			{/if}
+					{if $day['weekend'] == true}
+						<p class="day_date_holiday">{$day['day']}</p>
+					{else}
+						<p class="day_date">{$day['day']}</p>
+					{/if}
+					{if !empty($day['visits'])}
+						<p class="day_visits">Schůzek: <a href="{plink Overview:visits}{$day['year'].'-'.$day['month'].'-'.$day['day']}/{$day['year'].'-'.$day['month'].'-'.$day['day']}" class="bold">{$day['visits']}</a></p>
+					{/if}
+				</td>
+			{/if}
+		{/foreach}
+		</tr>
+	</table>

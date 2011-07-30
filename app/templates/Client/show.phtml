@@ -1,0 +1,181 @@
+{block title}
+	<h2>Karta klienta</h2>
+{/block}
+
+{block submenu}
+	<li><a href="javascript:animatedcollapse.hide('add_person');javascript:animatedcollapse.hide('add_visit');javascript:animatedcollapse.hide('add_order');javascript:animatedcollapse.hide('edit_client');javascript:animatedcollapse.toggle('add_client')"><img src="/images/icons/user_add.png" alt="" /> Přidat klienta</a></li>
+	<li><a href="javascript:animatedcollapse.hide('add_person');javascript:animatedcollapse.hide('add_visit');javascript:animatedcollapse.hide('add_order');javascript:animatedcollapse.hide('add_client');javascript:animatedcollapse.toggle('edit_client')"><img src="/images/icons/user_edit.png" alt="" /> Upravit klienta</a></li>
+	<li><a href="javascript:print()"><img src="/images/icons/print.png" alt="" /> Tisknout</a></li>
+	<hr />
+	<li><a href="javascript:animatedcollapse.hide('add_person');javascript:animatedcollapse.hide('add_order');javascript:animatedcollapse.hide('edit_client');javascript:animatedcollapse.hide('add_client');javascript:animatedcollapse.toggle('add_visit')"><img src="/images/icons/add.png" alt="" /> Přidat schůzku</a></li>
+	<li><a href="javascript:animatedcollapse.hide('add_person');javascript:animatedcollapse.hide('add_visit');javascript:animatedcollapse.hide('edit_client');javascript:animatedcollapse.hide('add_client');javascript:animatedcollapse.toggle('add_order')"><img src="/images/icons/invoice.png" alt="" /> Přidat objednávku</a></li>
+	<li><a href="javascript:animatedcollapse.hide('add_visit');javascript:animatedcollapse.hide('add_order');javascript:animatedcollapse.hide('edit_client');javascript:animatedcollapse.hide('add_client');javascript:animatedcollapse.toggle('add_person')"><img src="/images/icons/user_add.png" alt="" /> Přidat osobu</a></li>
+{/block}
+
+{block content}
+<div id="add_visit" class="hidden">
+	<h3>Přidat schůzku <img src="/images/icons/add.png" alt="" /></h3>
+	{control formAddVisit}
+</div>
+
+<div id="add_order" class="hidden">
+	<h3>Pridat objednávku <img src="/images/icons/invoice.png" alt="" /></h3>
+	{control formAddOrder}
+</div>
+
+<div id="edit_client" class="hidden">
+	<h3>Upravit klienta <img src="/images/icons/user_edit.png" alt="" /></h3>
+	{control formEditClient}
+</div>
+
+<div id="add_client" class="hidden">
+	<h3>Přidat klienta <img src="/images/icons/user_add.png" alt="" /></h3>
+	{control formAddClient}
+</div>
+
+<div id="add_person" class="hidden">
+	<h3>Přidat kontaktní osobu <img src="/images/icons/user_add.png" alt="" /></h3>
+	{control formAddPerson}
+</div>
+
+<div class="print">
+	<!-- Base client info -->
+	<div class="info_table">
+		<fieldset><legend>Klient</legend>
+			<table>
+				<tr>
+					<th>Firma</th><td>{$client['name']}</td><th>Datum přidání</th><td>{$client['added']}</td>
+				</tr>
+				<tr>
+					<th>IČ</th><td>{$client['ic']}</td>
+					<th>DIČ</th><td>{$client['dic']}</td>
+				</tr>
+			</table>
+		</fieldset>
+
+		<fieldset><legend>Sídlo</legend>
+		<table>
+			<tr>
+				<th>Ulice</th><td>{$client['street']}</td><td colspan="2"><a href="{$client['map_url']}" target="_blank">Najít na mapě <img src="{$basePath}/images/icons/globus.png" alt="" /></a></td>
+			</tr>
+			<tr>
+				<th>Město</th><td>{$client['city']}</td><th>PSČ</th><td>{$client['psc']}</td>
+			</tr>
+		</table>
+		</fieldset>
+		
+		<fieldset><legend>Kontakt</legend>
+			<table>
+				{if ($client['contact_person'] != '---')}
+					<tr>
+						<th>Kontaktní osoba</th><td>{$client['contact_person']}</td>
+						<th>Pozice</th><td>{$client['contact_person_position']}</td>
+					</tr>
+				{/if}
+				<tr>
+					<th>Telefon</th><td>{$client['phone']}</td><th>Email</th><td>{if ($client['email'] != '---')}<a href="mailto:{$client['email']}">{$client['email']} <img src="/images/icons/mail-send.png" alt=""/></a>{else}---{/if}</td>
+				</tr>
+				{if ($client['www'] != '---')}<tr><th>Web</th><td><a href="{$client['www']}" target="_blank">{$client['www']} <img src="/images/icons/http.png" alt="" /></a></td></tr>{/if}
+			</table>
+		</fieldset>
+		
+		{if ($client['last_order'] != "---")}
+			<fieldset><legend>Poslední objednávka</legend>
+				<table>
+					<tr><th>Datum objednávky</th><td>{$client['last_order']}</td><th>Cena objednávky</th><td>{$client['last_order_price']}</td></tr>
+					{if $client['last_order_notes']}<tr><th>Poznámky</th><td colspan="3">{!$client['last_order_notes']}</td></tr>{/if}
+				</table>
+			</fieldset>
+		{/if}
+		
+		{if ($client['last_visit'] != "---")}
+			<fieldset><legend>Poslední schůzka</legend>
+				<table>
+					<tr><th>Datum schůzky</th><td>{$client['last_visit']}</td></tr>
+					{if $client['last_visit_notes']}<tr><th>Poznámky</th><td colspan="3">{!$client['last_visit_notes']}</td></tr>{/if}
+				</table>
+			</fieldset>
+		{/if}
+		
+		{if ($client['tags'] != "---")}
+			<fieldset><legend>Nálepky</legend>
+				<ul class="tags">
+					{foreach $tags as $id => $name}
+						<li>{$name}</li>
+					{/foreach}
+				</ul>
+			</fieldset>
+		{/if}
+		
+		{if ($client['notes'] != "---")}
+			<fieldset><legend>Poznámky</legend>
+				<table>
+					<tr><td colspan="4">{!$client['notes']}</td><tr>
+				</table>
+			</fieldset>
+		{/if}
+	</div>
+
+	<!-- Contact persons -->
+	{if (!empty($persons))}
+		<div class="client_visits">
+			<fieldset><legend>Kontaktní osoby</legend>
+				<table>
+					<tr class="title"><th>Jméno</th><th>Pozice</th><th>Telefon</th><th>Email</th><th>Poznámky</th></tr>
+					{foreach $persons as $key => $person}
+						<tr><td class="date">{$person['name']}</td><td class="date">{$person['position']}</td><td class="date">{$person['phone']}</td><td class="date">{if (!empty($person['email']))}<a href="mailto:{$person['email']}">{$person['email']}</a>{/if}</td><td class="notes">{!$person['notes']}</td><td class="date"><a href="{$presenter->link('Client:editPerson', array('id' => $client['id'], 'actionid' => $person['id']))}"><img src="/images/icons/edit.png" alt="X" /></a></td></tr>
+					{/foreach}
+				</table>
+			</fieldset>
+		</div>
+	{/if}
+
+	<!-- Client's visits -->
+	{if (!empty($visits))}
+		<div class="client_visits">
+			<fieldset><legend>Plánované schůzky <span class="fieldset-line">|</span> Připomenutí</legend>
+				<table>
+					<tr class="title"><th>Datum</th><th>Způsob</th><th>Poznámky</th></tr>
+					{foreach $visits as $key => $visit}
+						{if ($visit['done'] == 0)}
+							{if ($visit['today'] == true)}
+								<tr class="today">
+							{else}
+								<tr>
+							{/if}
+							<td class="date">{$visit['date']}</td><td class="date">{$visit['type_name']}</td><td class="notes">{!$visit['notes']}</td><td class="date"><a href="{$presenter->link('Client:editVisit', array('id' => $client['id'], 'actionid' => $visit['id']))}"><img src="/images/icons/edit.png" alt="X" /></a></td>
+							</tr>
+						{/if}
+					{/foreach}
+				</table>
+			</fieldset>
+		
+			<fieldset><legend>Proběhlé schůzky</legend>
+				<table>
+					<tr class="title"><th>Datum</th><th>Způsob</th><th>Poznámky</th></tr>
+					{foreach $visits as $key => $visit}
+						{if ($visit['done'] == 1)}
+							<tr><td class="date">{$visit['date']}</td><td class="date">{$visit['type_name']}</td><td class="notes">{!$visit['notes']}</td><td class="date"><a href="{$presenter->link('Client:editVisit', array('id' => $client['id'], 'actionid' => $visit['id']))}"><img src="/images/icons/edit.png" alt="X" /></a></td></tr>
+						{/if}
+					{/foreach}
+				</table>
+			</fieldset>
+			<p>Celkem schůzek: {$visitsCount}</p>
+		</div>
+	{/if}
+
+	<!-- Client's orders -->
+	{if ($client['last_order'] != '---')}
+		<div class="client_visits">
+			<fieldset><legend>Objednávky</legend>
+				<table>
+					<tr class="title"><th>Datum</th><th>Poznámky</th><th>Cena</th></tr>
+					{foreach $orders as $key => $order}
+						<tr><td class="date">{$order['date']}</td><td class="notes">{!$order['notes']}</td><td class="price">{$order['price']}</td><td class="date"><a href="{$presenter->link('Client:editOrder', array('id' => $client['id'], 'actionid' => $order['id']))}"><img src="/images/icons/edit.png" alt="X" /></a></td></tr>
+					{/foreach}
+				</table>
+			</fieldset>
+			<p>Celkem objednávek: {$ordersCount} v ceně {$ordersPrice}</p>
+		</div>
+	{/if}
+</div>

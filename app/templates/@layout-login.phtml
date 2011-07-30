@@ -1,0 +1,49 @@
+{*
+ * eWide Client layout template.
+ *
+ * @copyright  Copyright (c) 2010 eWide
+ * @package    eWide Client
+ *
+ * @param string   $basePath web base path
+ * @param string   $robots   tell robots how to index the content of a page (optinal)
+ * @param array    $flashes  flash messages
+ *}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<meta name="description" content="eWide Client - manage your clients widely!">
+	<meta name="robots" content="noindex,nofollow">
+	<meta name="author" content="Chrysalix <info@chrysalix.cz>">
+
+	<title>eWide Client</title>
+
+	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/smooth.css" type="text/css">
+	<link rel="stylesheet" media="print" href="{$basePath}/css/print.css" type="text/css">
+	<link rel="shortcut icon" href="{$basePath}/favicon.ico" type="image/x-icon">
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	
+	<!-- JS Form validation -->
+	<script type="text/javascript" src="{$basePath}/js/LiveFormValidation.js"></script>
+</head>
+
+<body>
+	{foreach $flashes as $flash}<div class="flash {$flash->type}">{$flash->message}</div>{/foreach}
+	
+	<div id="header">
+		<h1>eWide Client</h1>
+		<h2>Přihlášení</h2>
+	</div>
+	
+	<div id="content">
+		{include #content}
+	</div>
+	
+	<div id="footer">
+	Copyright &copy; 2010 eWide
+	</div>
+</body>
+</html>

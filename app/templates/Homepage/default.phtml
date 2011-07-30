@@ -1,0 +1,110 @@
+{block title}
+	<h2>Seznam klientů</h2>
+{/block}
+
+{block submenu}
+	<li><a href="javascript:animatedcollapse.hide('search_client');javascript:animatedcollapse.toggle('add_client')"><img src="/images/icons/user_add.png" alt="" /> Přidat klienta</a></li>
+	<li><a href="javascript:animatedcollapse.hide('add_client');javascript:animatedcollapse.toggle('search_client')"><img src="/images/icons/search.png" alt="" /> Filtry</a></li>
+	<li><a href="/clients"><img src="/images/icons/del.png" alt="" /> Zrušit filtry</a></li>
+	<li><a href="javascript:print()"><img src="/images/icons/print.png" alt="" /> Tisknout</a></li>
+	<br />
+	<li><form name="group">
+		Zobrazit <select name="groups" onchange="document.location.href=this.value">
+			<option value="{$presenter->link('Homepage:default', array('group' => '0', 'order' => $selectedOrder, 'sort' => $selectedSort, 'search' => $selectedSearch))}"{if ($selectedGroup == 0)} selected{/if}>Všechny skupiny</option>
+			{foreach $clientGroups as $key => $group}
+				<option value="{$presenter->link('Homepage:default', array('group' => $group['id'], 'order' => $selectedOrder, 'sort' => $selectedSort, 'search' => $selectedSearch))}"{if ($selectedGroup == $group['id'])} selected{/if}>{$group['name']}</option>
+			{/foreach}
+		</select>
+	</form>
+	
+	<form name="order">
+		, řadit podle <select name="orders" onchange="document.location.href=this.value">
+			{foreach $orderOptions as $key => $value}
+				<option value="{$presenter->link('Homepage:default', array('group' => $selectedGroup, 'order' => $key, 'sort' => $selectedSort, 'search' => $selectedSearch))}"{if ($selectedOrder == $key)} selected{/if}>{$value}</option>
+			{/foreach}
+		</select>
+	</form>
+	
+	<form name="sort">
+		<select name="sorts" onchange="document.location.href=this.value">
+			<option value="{$presenter->link('Homepage:default', array('group' => $selectedGroup, 'order' => $selectedOrder, 'sort' => 'asc', 'search' => $selectedSearch))}"{if ($selectedSort == 'asc')} selected{/if}>Vzestupně</option>
+			<option value="{$presenter->link('Homepage:default', array('group' => $selectedGroup, 'order' => $selectedOrder, 'sort' => 'desc', 'search' => $selectedSearch))}"{if ($selectedSort == 'desc')} selected{/if}>Sestupně</option>
+		</select>
+	</form></li>
+{/block}
+
+{block content}
+<div id="add_client" class="hidden">
+	<h3>Přidat klienta <img src="/images/icons/user_add.png" alt="" /></h3>
+	{control formAddClient}
+</div>
+
+<div id="search_client" class="hidden">
+	<h3>Filtrování a hledání <img src="/images/icons/search.png" alt="" /></h3>
+	{control formSearchClients}
+</div>
+
+{if empty($clients)}
+	<p>Nebyly nalezeny žádné záznamy klientů.</p>
+	<p>Přejete si <a href="javascript:animatedcollapse.hide('search_client');javascript:animatedcollapse.toggle('add_client')"><img src="/images/icons/add.png" alt="" /> Přidat klienta</a> ?</p>
+{else}
+	<p><strong>Celkem záznamů:</strong> {$clientsCount}</p>
+	{if ($clientsCount > $showBotMenu)}
+		<p style="text-align:right;"><a href="#bottom">Přejít na konec <img src="/images/icons/expand.png" width="16px" /></a></p>
+	{/if}
+	<table id="clients" class="print">
+		<tr>
+			{foreach $tableColumns as $key => $title}
+				<th>{$title}</th>
+			{/foreach}
+		</tr>
+		{foreach $clients as $key => $client}
+			<tr class="item">
+				{foreach $tableColumns as $column => $title}
+					{if $column == 'address'}
+						<td>{$client['street']}<br />{$client['city']} {$client['psc']}</td>
+					{elseif $column == 'email'}
+						<td>{if $client['email'] != '---'}<a href="mailto:{$client['email']}">{/if}{$client['email']}</a></td>
+					{elseif $column == 'group_name'}
+						<td style="background: #{$client['group_color']};">{$client['group_name']}</td>
+					{elseif $column == 'id' and $coloredId == 1}
+						<td style="background: #{$client['group_color']}">{$client['id']}</td>
+					{else}
+						<td>{$client[$column]}</td>
+					{/if}
+				{/foreach}
+				<td class="noprint"><a href="{$presenter->link('Client:show', array('id' => $client['id']))}"><img src="/images/icons/next.png" title="Více" alt=">>" /></a></td>
+			</tr>
+		{/foreach}
+	</table>
+	{control vp}
+{/if}
+
+{if ($clientsCount > $showBotMenu)}
+	<p style="text-align:right;margin-top: -100px;"><a href="#top">Přejít na začátek <img src="/images/icons/collapse.png" width="16px" /></a></p>
+	<div id="botmenu">
+		<li><form name="group2">
+			Zobrazit <select name="groups" OnChange="location.href=group2.groups.options[selectedIndex].value">
+				<option value="{$presenter->link('Homepage:default', array('group' => '0', 'order' => $selectedOrder, 'sort' => $selectedSort, 'search' => $selectedSearch))}" {if ($selectedGroup == 0)}selected{/if}>Všechny skupiny</option>
+				{foreach $clientGroups as $key => $group}
+					<option value="{$presenter->link('Homepage:default', array('group' => $group['id'], 'order' => $selectedOrder, 'sort' => $selectedSort, 'search' => $selectedSearch))}" {if ($selectedGroup == $group['id'])}selected{/if}>{$group['name']}</option>
+			{/foreach}
+			</select>
+		</form>
+		
+		<form name="order2">
+		, řadit podle <select name="orders" OnChange="location.href=order2.orders.options[selectedIndex].value">
+			{foreach $orderOptions as $key => $value}
+				<option value="{$presenter->link('Homepage:default', array('group' => $selectedGroup, 'order' => $key, 'sort' => $selectedSort, 'search' => $selectedSearch))}" {if ($selectedOrder == $key)}selected{/if}>{$value}</option>
+			{/foreach}
+			</select>
+		</form>
+		
+		<form name="sort2">
+			<select name="sorts" OnChange="location.href=sort2.sorts.options[selectedIndex].value">
+				<option value="{$presenter->link('Homepage:default', array('group' => $selectedGroup, 'order' => $selectedOrder, 'sort' => 'asc', 'search' => $selectedSearch))}" {if ($selectedSort == 'asc')}selected{/if}>Vzestupně</option>
+				<option value="{$presenter->link('Homepage:default', array('group' => $selectedGroup, 'order' => $selectedOrder, 'sort' => 'desc', 'search' => $selectedSearch))}" {if ($selectedSort == 'desc')}selected{/if}>Sestupně</option>
+			</select>
+		</form></li>
+	</div>
+{/if}

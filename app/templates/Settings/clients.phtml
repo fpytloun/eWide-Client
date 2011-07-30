@@ -1,0 +1,66 @@
+{block title}
+	<h2>Správa klientů</h2>
+{/block}
+
+{block submenu}
+	<li><a href="javascript:animatedcollapse.show('manageGroup');javascript:animatedcollapse.hide('manageTag');javascript:animatedcollapse.hide('manageVisitType')"><img src="/images/icons/groups.png" alt="" /> Správa skupin</a></li>
+	<li><a href="javascript:animatedcollapse.hide('manageGroup');javascript:animatedcollapse.show('manageTag');javascript:animatedcollapse.hide('manageVisitType')"><img src="/images/icons/tags.png" alt="" /> Správa tagů</a></li>
+	<li><a href="javascript:animatedcollapse.hide('manageGroup');javascript:animatedcollapse.hide('manageTag');javascript:animatedcollapse.show('manageVisitType')"><img src="/images/icons/visits.png" alt="" /> Správa schůzek</a></li>
+	<li><a href="{plink Settings:custom}">Vlastní informace ke klientům</a></li>
+{/block}
+
+{block content}
+<div id="manageVisitType" class="form_settings" style="display:none">
+	<h3>Správa schůzek <img src="/images/icons/visits.png" alt="" /></h3>
+	<fieldset><legend><h3><a href="javascript:animatedcollapse.hide('editVisitType');javascript:animatedcollapse.hide('delVisitType');javascript:animatedcollapse.show('addVisitType');">Přidat typ schůzek</a></h3></legend>
+	<div id="addVisitType">
+		{control addVisitTypeForm}
+	</div>
+	</fieldset>
+	<fieldset><legend><h3><a href="javascript:animatedcollapse.show('editVisitType');javascript:animatedcollapse.hide('delVisitType');javascript:animatedcollapse.hide('addVisitType');">Přejmenovat typ schůzek</a></h3></legend>
+	<div id="editVisitType" style="display:none">
+		{control editVisitTypeForm}
+	</div>
+	</fieldset>
+	<fieldset><legend><h3><a href="javascript:animatedcollapse.hide('editVisitType');javascript:animatedcollapse.show('delVisitType');javascript:animatedcollapse.hide('addVisitType');">Odebrat typ schůzek</a></h3></legend>
+	<div id="delVisitType" style="display:none">
+		{control delVisitTypeForm}
+	</div>
+	</fieldset>
+</div>
+<div id="manageTag" class="form_settings" style="display:none">
+	<h3>Správa tagů <img src="/images/icons/tags.png" alt="" /></h3>
+	<fieldset><legend><h3><a href="javascript:animatedcollapse.show('addTag');javascript:animatedcollapse.hide('editTag');javascript:animatedcollapse.hide('delTag');">Přidat tag</a></h3></legend>
+	<div id="addTag">
+		{control addTagsForm}
+	</div>
+	</fieldset>
+	<fieldset><legend><h3><a href="javascript:animatedcollapse.hide('addTag');javascript:animatedcollapse.show('editTag');javascript:animatedcollapse.hide('delTag');">Přejmenovat tag</a></h3></legend>
+	<div id="editTag" style="display: none">
+		{control editTagsForm}
+	</div>
+	</fieldset>
+	<fieldset><legend><h3><a href="javascript:animatedcollapse.hide('addTag');javascript:animatedcollapse.hide('editTag');javascript:animatedcollapse.show('delTag');">Odebrat tag</a></h3></legend>
+	<div id="delTag" style="display: none">
+		{control delTagsForm}
+	</div>
+	</fieldset>
+</div>
+<div id="manageGroup" class="form_settings">
+	<h3>Správa skupin <img src="/images/icons/groups.png" alt="" /></h3>
+	<fieldset><legend><h3><a href="javascript:animatedcollapse.show('addGroup');javascript:animatedcollapse.hide('editGroup');javascript:animatedcollapse.hide('delGroup');">Přidat skupinu</a></h3></legend>
+	<div id="addGroup">
+		{control addGroupForm}
+	</div>
+	</fieldset>
+	<fieldset><legend><h3><a href="javascript:animatedcollapse.hide('addGroup');javascript:animatedcollapse.show('editGroup');javascript:animatedcollapse.hide('delGroup');">Upravit skupinu</a></h3></legend>
+	<div id="editGroup" style="display: none">
+		{control editGroupForm}
+	</div>
+	</fieldset>
+	<fieldset><legend><h3><a href="javascript:animatedcollapse.hide('addGroup');javascript:animatedcollapse.hide('editGroup');javascript:animatedcollapse.show('delGroup');">Odebrat skupinu</a></h3></legend>
+	<div id="delGroup" style="display: none">
+		{control delGroupForm}
+	</div>
+	</fieldset>
+</div>

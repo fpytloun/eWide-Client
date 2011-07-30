@@ -1,0 +1,52 @@
+{block title}
+	<h2>Přehled schůzek</h2>
+{/block}
+
+{block submenu}
+	<li><a href="javascript:print()"><img src="/images/icons/print.png" alt="" /> Tisknout</a></li><br />
+	<li class="date_range_form">{control showForm}</li>
+{/block}
+
+{block content}
+<div class="print">
+	{if isset($visits)}
+		<div class="client_visits">
+		{$form->render('begin')}
+			<fieldset><legend>Plánované schůzky <span class="fieldset-line">|</span> Připomenutí</legend>
+				<table>
+					<tr class="title"><th style="border:none;" class="noprint"></th><th>Datum</th><th>Klient</th><th>Způsob</th><th>Poznámky</th></tr>
+					{foreach $visits as $key => $visit}
+						{if $visit['done'] == 0}
+							{if (isset($visit['today']))}
+								<tr class="today">
+							{else}
+								<tr>
+							{/if}
+							<td class="noprint">{$form['visit_'.$visit['id']]->control}</td><td>{$visit['date']}</td><td><a href="{$presenter->link('Client:show', array('id' => $visit['client']))}">{$visit['client_name']}</a></td><td>{$visit['type_name']}</td><td class="notes">{!$visit['notes']}</td><td class="noprint"><a href="{$presenter->link('Client:editVisit', array('id' => $visit['client'], 'actionid' => $visit['id']))}"><img src="{$basePath}/images/icons/edit.png" alt="X" /></a></td></tr>
+						{/if}
+					{/foreach}
+				</table>
+			</fieldset>
+			<p class="noprint">
+				{$form['action']->control}
+				{$form['submit']->control}
+			</p>
+		{$form->render('end')}
+		</div>
+
+		<div class="client_visits">
+			<fieldset><legend>Proběhlé schůzky</legend>
+				<table>
+					<tr class="title"><th>Datum</th><th>Klient</th><th>Způsob</th><th>Poznámky</th></tr>
+					{foreach $visits as $key => $visit}
+						{if $visit['done'] == 1}
+							<tr><td>{$visit['date']}</td><td><a href="{$presenter->link('Client:show', array('id' => $visit['client']))}">{$visit['client_name']}</a></td><td>{$visit['type_name']}</td><td class="notes">{!$visit['notes']}</td><td class="noprint"><a href="{$presenter->link('Client:editVisit', array('id' => $visit['client'], 'actionid' => $visit['id']))}"><img src="{$basePath}/images/icons/edit.png" alt="X" /></a></td></tr>
+						{/if}
+					{/foreach}
+				</table>
+			</fieldset>
+		</div>
+	{else}
+		<p>Nebyly nalezeny žádné schůzky.</p>
+	{/if}
+</div>

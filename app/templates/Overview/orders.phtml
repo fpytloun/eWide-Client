@@ -1,0 +1,27 @@
+{block title}
+	<h2>Přehled objednávek</h2>
+{/block}
+
+{block submenu}
+	<li><a href="javascript:print()"><img src="/images/icons/print.png" alt="" /> Tisknout</a></li><br />
+	<li class="date_range_form">{control showForm}</li>
+{/block}
+
+{block content}
+<div class="print">
+	{if isset($orders)}
+		<div class="client_visits">
+			<fieldset><legend>Objednávky</legend>
+				<table>
+					<tr class="title"><th>Datum</th><th>Klient</th><th>Cena</th><th>Poznámky</th></tr>
+					{foreach $orders as $key => $order}
+						<td>{$order['date']}</td><td><a href="{$presenter->link('Client:show', array('id' => $order['client']))}">{$order['client_name']}</a></td><td>{$order['price']}</td><td class="notes">{!$order['notes']}</td><td class="noprint"><a href="{$presenter->link('Client:editOrder', array('id' => $order['client'], 'actionid' => $order['id']))}"><img src="{$basePath}/images/icons/edit.png" alt="X" /></a></td></tr>
+					{/foreach}
+				</table>
+			</fieldset>
+			<p>Celkem objednávek: {$totalCount} v ceně {$totalPrice}</p>
+		</div>
+	{else}
+		<p>Nebyly nalezeny žádné objednávky.</p>
+	{/if}
+</div>

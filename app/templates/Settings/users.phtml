@@ -1,0 +1,27 @@
+{block title}
+	<h2>Správa uživatelů</h2>
+{/block}
+
+{block submenu}
+	<li><a href="javascript:animatedcollapse.toggle('add_client')"><img src="/images/icons/user_add.png" alt="" /> Přidat uživatele</a></li>
+{/block}
+
+{block content}
+<div id="add_client" class="hidden">
+	<h3>Přidat uživatele <img src="/images/icons/user_add.png" alt="" /></h3>
+	{$form}
+</div>
+
+<table id="clients">
+<tr><th>Jméno</th><th>Role</th><th>Telefon</th><th>Email</th><th>Vytvořen</th></tr>
+{foreach $users as $key => $user}
+	<tr class="item">
+		<td>{$user['login']}</td>
+		<td>{$user['role']}</td>
+		<td>{$user['phone']}</td>
+		<td>{$user['email']}</td>
+		<td>{$user['created']}</td>
+		<td><a href="{$presenter->link('Settings:editUser', array('id' => $user['id']))}"><img src="/images/icons/user_edit.png" alt="X" /></a></td>
+	</tr>
+{/foreach}
+</table>

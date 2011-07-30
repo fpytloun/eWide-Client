@@ -1,0 +1,25 @@
+{block title}
+	{if $appSettings}
+		<h2>Nastavení aplikace</h2>
+	{else}
+		<h2>Uživatelská nastavení</h2>
+	{/if}
+{/block}
+
+{block submenu}
+	{if $isAdmin}
+		{if $appSettings}
+			<li><a href="{$presenter->link('Settings:default')}"><img src="/images/icons/settings.png" alt="" /> Uživatelská nastavení</a></li>
+		{else}
+			<li><a href="{$presenter->link('Settings:default', array('id' => 'application'))}"><img src="/images/icons/settings.png" alt="" /> Nastavení aplikace</a></li>
+		{/if}
+		<br />
+		<li><a href="{$presenter->link('Settings:users')}"><img src="/images/icons/user_add.png" alt="" /> Správa uživatelů</a></li>
+		<li><a href="{$presenter->link('Settings:clients')}"><img src="/images/icons/edit.png" alt="" /> Nastavení klientů</a></li>
+	{/if}
+{/block}
+
+{block content}
+<div class="form_settings">
+	{$form}
+</div>

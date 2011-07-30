@@ -1,0 +1,104 @@
+10
+
+dir
+360
+svn://svn.ifrit.eu/eWide/client/libs/Nette
+svn://svn.ifrit.eu
+
+
+
+2010-11-23T21:05:14.091532Z
+336
+kenji
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+da290223-457c-6a47-e31d-cca039e7f753
+
+Mail
+dir
+
+ComponentModel
+dir
+
+Forms
+dir
+
+Debug
+dir
+
+Loaders
+dir
+
+Reflection
+dir
+
+loader.php
+file
+
+
+
+
+2010-12-26T13:03:59.455782Z
+f7e7558223b78f816d55a10df41f936c
+2010-11-23T21:05:14.091532Z
+336
+kenji
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1857
+
+Caching
+dir
+
+Templates
+dir
+
+Utils
+dir
+
+Application
+dir
+
+Environment
+dir
+
+Config
+dir
+
+Security
+dir
+
+Web
+dir
+

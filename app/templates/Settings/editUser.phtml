@@ -1,0 +1,13 @@
+{block title}
+	<h2>Upravit uživatele</h2>
+{/block}
+
+{block submenu}
+	<li><a href="{$presenter->link('Settings:users')}"><img src="/images/icons/back.png" alt="" /> Zpět na seznam uživatelů</a></li>
+{/block}
+
+{block content}
+<div id="add_client" class="hidden" style="display: block;">
+	<h3>Upravit uživatele <img src="/images/icons/user_edit.png" alt="" /></h3>
+	{$form}
+</div>

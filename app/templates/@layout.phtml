@@ -1,0 +1,151 @@
+{**
+ * eWide Client layout template.
+ *
+ * @copyright  Copyright (c) 2010 eWide
+ * @package    eWide Client
+ *
+ * @param string   $basePath web base path
+ * @param string   $robots   tell robots how to index the content of a page (optinal)
+ * @param array    $flashes  flash messages
+ *}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<meta name="description" content="eWide Client - manage your clients widely!">
+	<meta name="robots" content="noindex,nofollow">
+	<meta name="author" content="Chrysalix <info@chrysalix.cz>">
+
+	<title>eWide Client</title>
+
+	<link rel="stylesheet" href="{$basePath}/css/{$theme}.css" type="text/css">
+	<link rel="shortcut icon" href="{$basePath}/favicon.ico" type="image/x-icon">
+
+	<!-- JQuery -->
+	<script type="text/javascript" src="{$basePath}/js/jquery.js"></script>
+	
+	<!-- AnimatedCollapse -->
+	<script type="text/javascript" src="{$basePath}/js/animatedcollapse.js"></script>
+	<script language="JavaScript" type="text/javascript">		
+		// Homepage:default
+		animatedcollapse.addDiv('add_client', 'fade=1')
+		animatedcollapse.addDiv('search_client', 'fade=1')
+		// Client:show
+		animatedcollapse.addDiv('add_visit', 'fade=1')
+		animatedcollapse.addDiv('edit_client', 'fade=1')
+		animatedcollapse.addDiv('add_order', 'fade=1')
+		animatedcollapse.addDiv('add_person', 'fade=1')
+		//Settings:clients
+		animatedcollapse.addDiv('manageGroup', 'fade=1')
+		animatedcollapse.addDiv('manageVisitType', 'fade=1')
+		animatedcollapse.addDiv('manageTag', 'fade=1')
+		animatedcollapse.addDiv('addVisitType', 'fade=1')
+		animatedcollapse.addDiv('editVisitType', 'fade=1')
+		animatedcollapse.addDiv('delVisitType', 'fade=1')
+		animatedcollapse.addDiv('addTag', 'fade=1')
+		animatedcollapse.addDiv('editTag', 'fade=1')
+		animatedcollapse.addDiv('delTag', 'fade=1')
+		animatedcollapse.addDiv('addGroup', 'fade=1')
+		animatedcollapse.addDiv('editGroup', 'fade=1')
+		animatedcollapse.addDiv('delGroup', 'fade=1')
+	
+		animatedcollapse.ontoggle=function($, divobj, state){ //fires each time a DIV is expanded/contracted
+			//$: Access to jQuery
+			//divobj: DOM reference to DIV being expanded/ collapsed. Use "divobj.id" to get its ID
+			//state: "block" or "none", depending on state
+		}
+
+		animatedcollapse.init()
+</script>
+
+	</script>
+	
+	<!-- DatePicker -->
+	<link rel="stylesheet" href="{$basePath}/css/jquery/ui.all.css" type="text/css" />
+	<script type="text/javascript" src="{$basePath}/js/ui.core.min.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/ui.slider.min.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/ui.datepicker.min.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/ui.datepicker-cs.min.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/timepicker-cs.js"></script>
+	<script type="text/javascript">
+		<!-- <![CDATA[
+		$(document).ready(function() {
+			$('input.datetimepicker').datepicker({
+				duration: '',
+				changeMonth: true,
+				changeYear: true,
+				yearRange: '2007:2020',
+				showTime: true,
+				time24h: true,
+				currentText: 'Dnes',
+				closeText: 'OK'
+			});
+			
+			$('input.datepicker').datepicker({
+				duration: '',
+				changeMonth: true,
+				changeYear: true,
+				yearRange: '2007:2020',
+				showTime: false,
+				time24h: true,
+				currentText: 'Dnes',
+				closeText: 'OK'
+			});
+		});
+		//]]> -->
+	</script>
+	
+	<!-- NotifyBar -->
+	<script type="text/javascript" src="{$basePath}/js/jquery.notifyBar.js"></script>
+	<link rel="stylesheet" href="{$basePath}/css/jquery.notifyBar.css" type="text/css" />
+	{if isset($notify)}
+		<script language="JavaScript" type="text/javascript">
+			$(function () {
+			  $.notifyBar({
+				cls: "{!$notify['class']}",
+				html: "{!$notify['text']}",
+				delay: 4000,
+				animationSpeed: "normal",
+				close: true
+			  });  
+			});
+		</script>
+	{/if}
+</head>
+
+<body>
+	<a name="top"></a>
+	{foreach $flashes as $flash}<div class="flash {$flash->type}">{$flash->message}</div>{/foreach}
+	
+	<div id="header">
+		<h1>eWide Client</h1>
+		{include #title}
+		<ul id="menu">
+			<li><a href="{plink Diary:default}">Diář</a></li>
+			<li><a href="/clients">Klienti</a></li>
+			<li><a href="{plink Overview:visits}">Schůzky</a></li>
+			<li><a href="{plink Overview:orders}">Objednávky</a></li>
+			<li><a href="{plink Export:default}">Export</a></li>
+			<hr />
+			<li class="right"><a href="{plink Login:default}">Odhlášení <img src="{$basePath}/images/icons/logout.png" alt="=>" /></a></li>
+			<!--<li class="right"><a href="{plink Homepage:default}">Exportovat <img src="{$basePath}/images/icons/print.png" alt="" /></a></li>-->
+			<li class="right"><a href="{plink Settings:default}">Nastavení <img src="{$basePath}/images/icons/settings.png" alt="" /></a></li>
+		</ul>
+		
+		<ul id="submenu">
+			{include #submenu}
+		</ul>
+	</div>
+	
+	<div id="content">
+		{include #content}
+	</div>
+	
+	<div id="footer">
+	Copyright &copy; 2010 eWide
+	<a name="bottom"></a>
+	</div>
+</body>
+</html>
