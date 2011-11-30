@@ -16,7 +16,7 @@
 			{/foreach}
 		</select>
 	</form>
-	
+
 	<form name="order">
 		, řadit podle <select name="orders" onchange="document.location.href=this.value">
 			{foreach $orderOptions as $key => $value}
@@ -24,7 +24,7 @@
 			{/foreach}
 		</select>
 	</form>
-	
+
 	<form name="sort">
 		<select name="sorts" onchange="document.location.href=this.value">
 			<option value="{$presenter->link('Homepage:default', array('group' => $selectedGroup, 'order' => $selectedOrder, 'sort' => 'asc', 'search' => $selectedSearch))}"{if ($selectedSort == 'asc')} selected{/if}>Vzestupně</option>
@@ -73,7 +73,8 @@
 						<td>{$client[$column]}</td>
 					{/if}
 				{/foreach}
-				<td class="noprint"><a href="{$presenter->link('Client:show', array('id' => $client['id']))}"><img src="/images/icons/next.png" title="Více" alt=">>" /></a></td>
+				<td class="noprint"><a href="{$presenter->link('Client:show', array('id' => $client['id']))}"><img src="/images/icons/next.png" title="Více" alt=">>" /></a><br />
+				<a href="{$presenter->link('Client:addVisit', array('id' => $client['id']))}"><img src="/images/icons/visits.png" title="Přidat schůzku" alt=">>" /></a></td>
 			</tr>
 		{/foreach}
 	</table>
@@ -91,7 +92,7 @@
 			{/foreach}
 			</select>
 		</form>
-		
+
 		<form name="order2">
 		, řadit podle <select name="orders" OnChange="location.href=order2.orders.options[selectedIndex].value">
 			{foreach $orderOptions as $key => $value}
@@ -99,7 +100,7 @@
 			{/foreach}
 			</select>
 		</form>
-		
+
 		<form name="sort2">
 			<select name="sorts" OnChange="location.href=sort2.sorts.options[selectedIndex].value">
 				<option value="{$presenter->link('Homepage:default', array('group' => $selectedGroup, 'order' => $selectedOrder, 'sort' => 'asc', 'search' => $selectedSearch))}" {if ($selectedSort == 'asc')}selected{/if}>Vzestupně</option>
