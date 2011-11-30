@@ -1,0 +1,12 @@
+{block title}
+	<h2>Přidat schůzku</h2>
+{/block}
+
+{block submenu}
+	<li><a href="{$presenter->link('Client:show', array('id' => $clientid))}"><img src="/images/icons/back.png"> Přejít na klienta</a></li>
+{/block}
+
+{block content}
+<div class="form">
+	{control formAddVisit}
+</div>
